@@ -4,15 +4,15 @@ from pathlib import Path
 import constants
 
 
-def main(dir_path: Path) -> None:
+def main(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
     """
     Search through a directory and move the files that match.
     """
     assert dir_path.is_dir(), f"{dir_path} is not a directory."
 
     for child_path in dir_path.iterdir():
-        if child_path.is_file() and child_path.suffix in constants.DEST_DIR:
-            move_file(child_path, constants.DEST_DIR[child_path.suffix])
+        if child_path.is_file() and child_path.suffix in dest_dirs:
+            move_file(child_path, dest_dirs[child_path.suffix])
 
 
 def move_file(src_path: Path, dest_dir: Path) -> None:
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(f"Searching through directory: {constants.SEARCH_DIR}")
     
     try:
-        main(constants.SEARCH_DIR)
+        main(constants.SEARCH_DIR, constants.DEST_DIR)
     except AssertionError as e:
         print(e)
     except Exception as e:
