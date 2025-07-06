@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(f"Searching through directory: {constants.SEARCH_DIR}")
     
     try:
-     main(constants.SEARCH_DIR)
+        main(constants.SEARCH_DIR)
     except AssertionError as e:
         print(e)
     except Exception as e:
