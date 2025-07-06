@@ -8,9 +8,7 @@ def main(dir_path: Path) -> None:
     """
     Search through a directory and move the files that match.
     """
-    if not dir_path.is_dir():
-        print("The given path is not a directory")
-        return
+    assert dir_path.is_dir(), f"{dir_path} is not a directory."
 
     for child_path in dir_path.iterdir():
         if child_path.is_file() and child_path.suffix in constants.DEST_DIR:
@@ -25,10 +23,8 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
     if not dest_dir.exists():
         dest_dir.mkdir(parents=True)
 
-    # If not a directory
-    if not dest_dir.is_dir():
-        print(f"Destination {dest_dir} is not a directory.")
-        return
+    # Throw an error if not a directory
+    assert dest_dir.is_dir(), f"{dest_dir} is not a directory."
 
     file_name = src_path.name
     dest_path = dest_dir / file_name
@@ -45,5 +41,11 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
 
 if __name__ == '__main__':
     print(f"Searching through directory: {constants.SEARCH_DIR}")
-    main(constants.SEARCH_DIR)
+    
+    try:
+     main(constants.SEARCH_DIR)
+    except AssertionError as e:
+        print(e)
+    except Exception as e:
+        print("Something went wrong:", e)
 
