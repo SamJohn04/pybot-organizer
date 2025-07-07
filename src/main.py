@@ -40,10 +40,10 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
 
 
 if __name__ == '__main__':
-    print(f"Searching through directory: {config.SEARCH_DIR}")
+    print(f"Searching through directory: {config.dir_to_search}")
 
     try:
-        main(config.SEARCH_DIR, config.DEST_DIR)
+        main(config.dir_to_search, config.dest_dirs)
     except AssertionError as e:
         print(e)
     except Exception as e:
