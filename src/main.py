@@ -1,7 +1,7 @@
 import time
 from pathlib import Path
 
-import constants
+import config
 
 
 def main(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
@@ -40,10 +40,10 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
 
 
 if __name__ == '__main__':
-    print(f"Searching through directory: {constants.SEARCH_DIR}")
-    
+    print(f"Searching through directory: {config.SEARCH_DIR}")
+
     try:
-        main(constants.SEARCH_DIR, constants.DEST_DIR)
+        main(config.SEARCH_DIR, config.DEST_DIR)
     except AssertionError as e:
         print(e)
     except Exception as e:
