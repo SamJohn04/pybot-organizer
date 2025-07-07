@@ -1,0 +1,12 @@
+{
+    "directory_to_search": "/home/samuel-john/Downloads",
+    "destination_directories": {
+        ".pdf": "/home/samuel-john/Documents/PDFs",
+        ".png": "/home/samuel-john/Pictures",
+        ".jpg": "/home/samuel-john/Pictures",
+        ".jpeg": "/home/samuel-john/Pictures",
+        ".webp": "/home/samuel-john/Pictures",
+        ".mp3": "/home/samuel-john/Music",
+        ".mp4": "/home/samuel-john/Music"
+    }
+}

@@ -1,18 +1,14 @@
-# Edit THIS file to change the directories searched through and moved to.
+import json
 from pathlib import Path
 
 
-# The directory path searched through
-SEARCH_DIR: Path = Path("/home/samuel-john/Downloads")
+with open("config.json", "r") as fp:
+    config = json.load(fp)
 
-# The directory paths copied to
+SEARCH_DIR: Path = Path(config["directory_to_search"])
+
 DEST_DIR: dict[str, Path] = {
-        ".pdf": Path("/home/samuel-john/Documents/PDFs"),
-        ".png": Path("/home/samuel-john/Pictures"),
-        ".jpg": Path("/home/samuel-john/Pictures"),
-        ".jpeg": Path("/home/samuel-john/Pictures"),
-        ".webp": Path("/home/samuel-john/Pictures"),
-        ".mp3": Path("/home/samuel-john/Music"),
-        ".mp4": Path("/home/samuel-john/Music"),
+        extension: Path(destination)
+        for extension, destination in config["destination_directories"].items()
         }
 
