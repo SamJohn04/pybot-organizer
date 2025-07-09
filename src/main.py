@@ -1,7 +1,14 @@
 import time
+import argparse
 from pathlib import Path
 
 import config
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(prog="organizer")
+    parser.add_argument('-w', '--write', help='write configuration.json', action='store_true')
+    return parser.parse_args()
 
 
 def search_dir(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
@@ -40,13 +47,19 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
 
 
 if __name__ == '__main__':
-    dir_to_search, dest_dirs = config.read_config()
-    print(f"Searching through directory: {dir_to_search}")
+    args = parse_args()
 
-    try:
-        search_dir(dir_to_search, dest_dirs)
-    except AssertionError as e:
-        print(e)
-    except Exception as e:
-        print("Something went wrong:", e)
+    if args.write:
+        # TODO
+        pass
+    else:
+        dir_to_search, dest_dirs = config.read_config()
+        print(f"Searching through directory: {dir_to_search}")
+
+        try:
+            search_dir(dir_to_search, dest_dirs)
+        except AssertionError as e:
+            print(e)
+        except Exception as e:
+            print("Something went wrong:", e)
 
