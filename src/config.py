@@ -14,3 +14,22 @@ def read_config() -> tuple[Path, dict[str, Path]]:
 
     return dir_to_search, dest_dirs
 
+
+def write_config(user_config: tuple[Path, dict[str, Path]]) -> None:
+    dir_to_search, dest_dirs = user_config
+    
+    dir_to_search = str(dir_to_search.resolve())
+    dest_dirs = {
+            extension: str(destination.resolve())
+            for extension, destination in dest_dirs.items()
+            }
+    
+    config = {
+            "directory_to_search": dir_to_search,
+            "destination_directories": dest_dirs
+            }
+
+    print("config =", config)
+    # with open("config.json", "w") as fp:
+    #     json.dump(user_config, fp)
+
