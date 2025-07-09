@@ -1,3 +1,5 @@
 # Organizer
 
-A python tool for organising your data. Edit config.json to fit your tastes.
+A python tool for organising your data.
+
+Users may edit their configuration via the terminal, using -w flag.
