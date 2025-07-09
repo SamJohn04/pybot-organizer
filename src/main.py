@@ -15,6 +15,12 @@ def search_and_move():
     dir_to_search, dest_dirs = config.read_config()
     print(f"Searching through directory: {dir_to_search}")
 
+    dir_to_search = Path(dir_to_search)
+    dest_dirs = {
+            extension: Path(destination)
+            for extension, destination in dest_dirs.items()
+            }
+
     try:
         search_dir(dir_to_search, dest_dirs)
     except AssertionError as e:
@@ -24,19 +30,29 @@ def search_and_move():
 
 
 def write():
-    dir_to_search = Path(input("Enter directory to perform searches at: "))
     dest_dirs = {}
-    print("Enter nothing to exit.")
+    dir_to_search = Path(input("Enter directory to perform searches at: ")).resolve()
+
+    print("Looping, enter nothing to exit")
     while True:
         extension = input("Extension (with full stop): ")
         if extension == "":
             break
-        dest_dirs[extension] = Path(input("Destination: "))
+        dest_dirs[extension] = Path(input("Destination: ")).resolve()
+
     print(dir_to_search)
     print(dest_dirs)
 
-    if input("Do you wish to update your configuration? (y|N): ") == 'y':
-        config.write_config((dir_to_search, dest_dirs))
+    if input("Do you wish to update your configuration? (y|N): ") != 'y':
+        return
+
+    dir_to_search = str(dir_to_search)
+    dest_dirs = {
+            extension: str(destination)
+            for extension, destination in dest_dirs.items()
+            }
+
+    config.write_config((dir_to_search, dest_dirs))
 
 
 def search_dir(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
