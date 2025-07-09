@@ -11,6 +11,34 @@ def parse_args():
     return parser.parse_args()
 
 
+def search_and_move():
+    dir_to_search, dest_dirs = config.read_config()
+    print(f"Searching through directory: {dir_to_search}")
+
+    try:
+        search_dir(dir_to_search, dest_dirs)
+    except AssertionError as e:
+        print(e)
+    except Exception as e:
+        print("Something went wrong:", e)
+
+
+def write():
+    dir_to_search = Path(input("Enter directory to perform searches at: "))
+    dest_dirs = {}
+    print("Enter nothing to exit.")
+    while True:
+        extension = input("Extension (with full stop): ")
+        if extension == "":
+            break
+        dest_dirs[extension] = Path(input("Destination: "))
+    print(dir_to_search)
+    print(dest_dirs)
+
+    if input("Do you wish to update your configuration? (y|N): ") == 'y':
+        config.write_config((dir_to_search, dest_dirs))
+
+
 def search_dir(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
     """
     Search through a directory and move the files that match.
@@ -50,27 +78,7 @@ if __name__ == '__main__':
     args = parse_args()
 
     if args.write:
-        dir_to_search = Path(input("Enter directory to perform searches at: "))
-        dest_dirs = {}
-        print("Enter nothing to exit.")
-        while True:
-            extension = input("Extension (with full stop): ")
-            if extension == "":
-                break
-            dest_dirs[extension] = Path(input("Destination: "))
-        print(dir_to_search)
-        print(dest_dirs)
-
-        if input("Do you wish to update your configuration? (y|N): ") == 'y':
-            config.write_config((dir_to_search, dest_dirs))
+        write()
     else:
-        dir_to_search, dest_dirs = config.read_config()
-        print(f"Searching through directory: {dir_to_search}")
-
-        try:
-            search_dir(dir_to_search, dest_dirs)
-        except AssertionError as e:
-            print(e)
-        except Exception as e:
-            print("Something went wrong:", e)
+        search_and_move()
 
