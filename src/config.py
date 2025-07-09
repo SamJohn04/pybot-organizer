@@ -29,7 +29,6 @@ def write_config(user_config: tuple[Path, dict[str, Path]]) -> None:
             "destination_directories": dest_dirs
             }
 
-    print("config =", config)
-    # with open("config.json", "w") as fp:
-    #     json.dump(user_config, fp)
+    with open("config.json", "w") as fp:
+        json.dump(config, fp, indent=4)
 
