@@ -4,7 +4,7 @@ from pathlib import Path
 import config
 
 
-def main(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
+def search_dir(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
     """
     Search through a directory and move the files that match.
     """
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     print(f"Searching through directory: {dir_to_search}")
 
     try:
-        main(dir_to_search, dest_dirs)
+        search_dir(dir_to_search, dest_dirs)
     except AssertionError as e:
         print(e)
     except Exception as e:
