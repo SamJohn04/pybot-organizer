@@ -5,6 +5,15 @@ from pathlib import Path
 import config
 
 
+def main():
+    args = parse_args()
+
+    if args.write:
+        write()
+    else:
+        search_and_move()
+
+
 def parse_args():
     parser = argparse.ArgumentParser(prog="organizer")
     parser.add_argument('-w', '--write', help='write configuration.json', action='store_true')
@@ -91,10 +100,5 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
 
 
 if __name__ == '__main__':
-    args = parse_args()
-
-    if args.write:
-        write()
-    else:
-        search_and_move()
+    main()
 
