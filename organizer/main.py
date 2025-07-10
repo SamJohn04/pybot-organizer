@@ -2,7 +2,7 @@ import time
 import argparse
 from pathlib import Path
 
-from src import config
+from organizer import config
 
 
 def main():
