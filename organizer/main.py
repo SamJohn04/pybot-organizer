@@ -52,11 +52,12 @@ def write():
     dir_to_search = Path(input("Enter directory to perform searches at: ")).resolve()
 
     print("Looping, enter nothing to exit")
-    while True:
-        extension = input("Extension (with full stop): ")
-        if extension == "":
-            break
+
+    extension = input("Extension (with full stop): ")
+    while extension != "":
         dest_dirs[extension] = Path(input("Destination: ")).resolve()
+
+        extension = input("Extension (with full stop): ")
 
     print(dir_to_search)
     print(dest_dirs)
