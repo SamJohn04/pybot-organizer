@@ -7,7 +7,7 @@ from organizer import core, config
 def main():
     args = parse_args()
 
-    if args.write:
+    if args.action == 'WRITE':
         write()
     else:
         search_and_move()
@@ -15,7 +15,12 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser(prog="organizer")
-    parser.add_argument('-w', '--write', help='write configuration.json', action='store_true')
+    parser.add_argument('-w', '--write',
+                        help='write configuration.json',
+                        action='store_const',
+                        const='WRITE',
+                        dest='action',
+                        default='SEARCH')
     return parser.parse_args()
 
 
