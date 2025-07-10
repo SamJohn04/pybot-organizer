@@ -24,8 +24,13 @@ def parse_args():
     return parser.parse_args()
 
 
-def search_and_move():
-    dir_to_search, dest_dirs = config.read_config()
+def search_and_move(searchable_dir: str | None = None):
+    if searchable_dir is None:
+        dir_to_search, dest_dirs = config.read_config()
+    else:
+        dir_to_search = searchable_dir
+        _, dest_dirs = config.read_config()
+
     print(f"Searching through directory: {dir_to_search}")
 
     dir_to_search = Path(dir_to_search)
