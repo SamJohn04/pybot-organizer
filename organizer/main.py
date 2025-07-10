@@ -72,6 +72,7 @@ def write():
             }
 
     config.write_config((dir_to_search, dest_dirs))
+    print("Configuration written.")
 
 
 if __name__ == '__main__':
