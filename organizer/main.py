@@ -9,8 +9,10 @@ def main():
 
     if args.action == 'WRITE':
         write()
-    else:
+    elif args.temp == None:
         search_and_move()
+    else:
+        search_and_move(args.temp)
 
 
 def parse_args():
@@ -21,6 +23,9 @@ def parse_args():
                         const='WRITE',
                         dest='action',
                         default='SEARCH')
+    parser.add_argument('--temp',
+                        help='temporarily use the following as the directory to search',
+                        default=None)
     return parser.parse_args()
 
 
