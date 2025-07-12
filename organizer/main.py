@@ -26,7 +26,12 @@ def parse_args():
     parser.add_argument('--temp',
                         help='temporarily use the following as the directory to search',
                         default=None)
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if args.action == 'WRITE' and args.temp is not None:
+        print("--temp and --write flags are not allowed together. Ignoring the --temp flag.")
+
+    return args
 
 
 def search_and_move(searchable_dir: str | None = None):
