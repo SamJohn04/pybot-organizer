@@ -69,8 +69,8 @@ def write():
 
         extension = input("Extension (with full stop): ")
 
-    print(dir_to_search)
-    print(dest_dirs)
+    print("Directory To Search:", dir_to_search)
+    print("Destination Directories: ", dest_dirs)
 
     if input("Do you wish to update your configuration? (y|N): ") != 'y':
         return
