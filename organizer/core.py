@@ -9,8 +9,9 @@ def search_dir(dir_path: Path, dest_dirs: dict[str, Path]) -> None:
     assert dir_path.is_dir(), f"{dir_path} is not a directory."
 
     for child_path in dir_path.iterdir():
-        if child_path.is_file() and child_path.suffix in dest_dirs:
-            move_file(child_path, dest_dirs[child_path.suffix])
+       destination = find_item_in_dest(child_path, dest_dirs)
+       if destination is not None:
+            move_file(child_path, destination)
 
 
 def move_file(src_path: Path, dest_dir: Path) -> None:
@@ -35,4 +36,14 @@ def move_file(src_path: Path, dest_dir: Path) -> None:
     # Move the file
     src_path.rename(dest_path)
     print(f"Moved: {src_path} -> {dest_path}")
+
+
+def find_item_in_dest(path: Path, dest_dirs: dict[str, Path]) -> Path | None:
+    """
+    Find file in destination diirectories.
+    """
+    # Update To Follow
+    if path.suffix in dest_dirs:
+        return dest_dirs[path.suffix]
+    return None
 
