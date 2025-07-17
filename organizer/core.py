@@ -42,8 +42,8 @@ def find_item_in_dest(path: Path, dest_dirs: dict[str, Path]) -> Path | None:
     """
     Find file in destination diirectories.
     """
-    # Update To Follow
-    if path.suffix in dest_dirs:
-        return dest_dirs[path.suffix]
+    for ending in dest_dirs:
+        if path.name.endswith(ending):
+            return dest_dirs[ending]
     return None
 
