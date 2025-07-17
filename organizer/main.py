@@ -45,8 +45,8 @@ def search_and_move(searchable_dir: str | None = None):
 
     dir_to_search = Path(dir_to_search)
     dest_dirs = {
-            extension: Path(destination)
-            for extension, destination in dest_dirs.items()
+            end_of_name: Path(destination)
+            for end_of_name, destination in dest_dirs.items()
             }
 
     try:
@@ -63,11 +63,11 @@ def write():
 
     print("Looping, enter nothing to exit")
 
-    extension = input("Extension (with full stop): ")
-    while extension != "":
-        dest_dirs[extension] = Path(input("Destination: ")).resolve()
+    end_of_name = input("End of file name (including extension): ")
+    while end_of_name != "":
+        dest_dirs[end_of_name] = Path(input("Destination: ")).resolve()
 
-        extension = input("Extension (with full stop): ")
+        end_of_name = input("End of file name (including extension): ")
 
     print("Directory To Search:", dir_to_search)
     print("Destination Directories: ", dest_dirs)
@@ -77,8 +77,8 @@ def write():
 
     dir_to_search = str(dir_to_search)
     dest_dirs = {
-            extension: str(destination)
-            for extension, destination in dest_dirs.items()
+            end_of_name: str(destination)
+            for end_of_name, destination in dest_dirs.items()
             }
 
     config.write_config((dir_to_search, dest_dirs))
