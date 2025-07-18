@@ -41,13 +41,13 @@ def search_and_move(searchable_dir: str | None = None):
         dir_to_search = searchable_dir
         _, dest_dirs = config.read_config()
 
-    print(f"Searching through directory: {dir_to_search}")
-
-    dir_to_search = Path(dir_to_search)
+    dir_to_search = Path(dir_to_search).resolve()
     dest_dirs = {
             end_of_name: Path(destination)
             for end_of_name, destination in dest_dirs.items()
             }
+
+    print(f"Searching through directory: {dir_to_search}")
 
     try:
         core.search_dir(dir_to_search, dest_dirs)
