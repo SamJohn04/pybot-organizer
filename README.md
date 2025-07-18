@@ -6,11 +6,15 @@ Users may download the repo, build the distribution, and install it, and they wi
 
 On the other hand, if you wish to run it old-school, change the
 
-> from organizer import core, config
+```
+from organizer import core, config
+```
 
 into
 
-> import core  
-> import config
+```
+import core
+import config
+```
 
 And you're good to go!
